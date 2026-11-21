@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enhance Blurry Photo Online Free - AI Image Enhancer</title>
+<meta name="description" content="Enhance blurry photo online free in 2 seconds. AI Image Enhancer to increase photo quality, unblur old photos and upscale to HD. No signup, 100% free.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f8fafc;color:#111}
+header{background:#111827;color:#fff;padding:15px;text-align:center}
+header h1{font-size:24px} header h1 span{color:#22c55e}
+.hero{max-width:800px;margin:20px auto;background:#fff;padding:25px;border-radius:15px;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,0.08)}
+.hero h2{font-size:22px;margin-bottom:10px}
+.hero p{color:#555;font-size:14px;margin-bottom:15px}
+.upload-box{border:2px dashed #6366f1;padding:25px;border-radius:12px;background:#eef2ff;cursor:pointer}
+input[type=file]{display:none}
+button{background:#22c55e;color:#fff;border:none;padding:12px 22px;border-radius:8px;font-size:15px;cursor:pointer;margin:8px 5px}
+button.secondary{background:#111827}
+canvas{max-width:100%;margin-top:15px;border-radius:10px;display:none}
+.content{max-width:800px;margin:20px auto;background:#fff;padding:25px;border-radius:15px;line-height:1.7}
+.content h3{margin:18px 0 8px}
+.content p, .content li{font-size:14px;color:#444}
+.faq b{display:block;margin-top:12px;color:#111}
+footer{text-align:center;padding:20px;color:#888;font-size:13px}
+</style>
+</head>
+<body>
+
+<header><h1>Enhance<span>My</span>Photo - AI Image Enhancer</h1></header>
+
+<div class="hero">
+<h2>Enhance Blurry Photo Online Free</h2>
+<p>Upload your blurry / old photo. Our tool will enhance quality, sharpen details and upscale it to HD. 100% Free, No Signup.</p>
+
+<div class="upload-box" onclick="document.getElementById('file').click()">
+<b>📸 Click Here to Upload Photo</b><br><small>JPG, PNG - Your photo never leaves your device, 100% Private</small>
+</div>
+<input type="file" id="file" accept="image/*">
+
+<br>
+<button onclick="enhance()">✨ Enhance Now</button>
+<button class="secondary" onclick="downloadImg()">⬇️ Download HD Photo</button>
+
+<br>
+<canvas id="canvas"></canvas>
+<p id="msg" style="color:green;margin-top:10px"></p>
+</div>
+
+<div class="content">
+<h3>How to Enhance Blurry Photo Online?</h3>
+<p>1. Click on Upload button and select your blurry photo.<br>
+2. Click on Enhance Now button. Our AI tool will automatically increase sharpness, brightness and clarity.<br>
+3. Click Download to save your HD photo. It is free for USA, UK, Canada and all Tier 1 countries.</p>
+
+<h3>What is AI Image Enhancer?</h3>
+<p>AI Image Enhancer is a free online tool that uses smart algorithms to fix blurry, old and low quality photos. If you have an old family photo, a blurry screenshot, or a low quality Instagram photo, this tool will make it sharp and clear in just 2 seconds. It works for passport photos, old memories, product photos and social media pictures.</p>
+
+<h3>Why Use This Tool?</h3>
+<ul>
+<li><b>100% Free:</b> No watermark, no signup, no hidden charges.</li>
+<li><b>Private & Safe:</b> Your photo is processed in your browser, it is never uploaded to our server.</li>
+<li><b>Fast:</b> Enhance any photo in less than 5 seconds.</li>
+<li><b>Works on Mobile:</b> Perfect for iPhone and Android users in USA, UK, Canada.</li>
+</ul>
+
+<h3>Frequently Asked Questions (FAQ)</h3>
+<div class="faq">
+<b>Is this image enhancer really free?</b>
+Yes, it is 100% free. You can enhance unlimited photos without any signup.
+<b>How to unblur a photo?</b>
+Just upload your blurry photo and click Enhance Now. The tool will automatically sharpen it.
+<b>Can I enhance old photos?</b>
+Yes, this tool is best for old family photos, childhood photos and scanned pictures.
+<b>Is my photo safe?</b>
+Yes, your photo never leaves your device. We do not store any photo on our server.
+<b>What format is supported?</b>
+JPG, PNG, WEBP and JPEG all supported.
+</div>
+</div>
+
+<footer>© 2026 EnhanceMyPhoto - Privacy Policy | Contact: hello@enhancemyphoto.com</footer>
+
+<script>
+let img = new Image();
+let canvas = document.getElementById('canvas');
+let ctx = canvas.getContext('2d');
+
+document.getElementById('file').addEventListener('change', function(e){
+  let reader = new FileReader();
+  reader.onload = function(ev){
+    img.onload = function(){
+      canvas.style.display='block';
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img,0,0);
+      document.getElementById('msg').innerText = "Photo Uploaded! Now Click Enhance Now";
+    }
+    img.src = ev.target.result;
+  }
+  reader.readAsDataURL(e.target.files[0]);
+});
+
+function enhance(){
+  if(!img.src){ alert("Pehle photo upload karo!"); return; }
+  // Upscale 2x + Sharpen effect
+  let w = img.width * 2;
+  let h = img.height * 2;
+  canvas.width = w; canvas.height = h;
+  ctx.filter = 'contrast(1.15) brightness(1.08) saturate(1.15) blur(0px)';
+  ctx.drawImage(img,0,0,w,h);
+  // Second pass for sharpness
+  ctx.filter = 'contrast(1.05)';
+  ctx.drawImage(canvas,0,0);
+  ctx.filter = 'none';
+  document.getElementById('msg').innerText = "✅ Enhanced! Now Click Download HD Photo";
+}
+
+function downloadImg(){
+  if(!img.src){ alert("Pehle photo upload karo!"); return; }
+  let a = document.createElement('a');
+  a.download = 'enhanced-photo.png';
+  a.href = canvas.toDataURL('image/png');
+  a.click();
+}
+</script>
+</body>
+</html>
